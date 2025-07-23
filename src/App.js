@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import ProductList from './components/ProductList';
 import ProductSearch from './components/ProductSearch';
 import ThemeToggle from './components/ThemeToggle';
@@ -10,7 +10,21 @@ export const ThemeContext = createContext();
 const App = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debounce, setDebounce] = useState("");
   // TODO: Exercice 2.2 - Ajouter l'état pour la langue
+
+  useEffect(() => {
+    console.log("effect declanché")
+
+    const timer = setTimeout(() => {
+      console.log("timer executé")
+      setDebounce(searchTerm);
+    }, 500);
+
+    return () =>  clearTimeout(timer);
+  }, [searchTerm])
+
+
 
   return (
     <ThemeContext.Provider value={{ isDarkTheme, setIsDarkTheme }}>
@@ -25,7 +39,7 @@ const App = () => {
         </header>
         <main>
           <ProductSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          <ProductList searchTerm={searchTerm} />
+          <ProductList searchTerm={debounce} />
         </main>
       </div>
     </ThemeContext.Provider>

@@ -8,7 +8,6 @@ const ProductSearch = ({searchTerm, setSearchTerm}) => {
 
   // TODO: Exercice 1.2 - Utiliser le hook useDebounce
 
-  
 
   return (
     <div className="mb-4">

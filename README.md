@@ -60,6 +60,15 @@ Pour chaque exercice :
 Pour implémenter la recherche, j'ai utilisé la technique de "props drilling", cette solution consiste à faire remonter l'état dans le composant parent, puis de la faire passer comme propriété aux différents composants enfants qui ont besoin de cette dernière. 
 Dans notre cas la technique de "props drilling" est considérée comme la meilleur solution puisque les composants enfants qui ont besoin de cet état sont des enfants directs du composant parent qui maintient cet état.
 
+**2 - Implémentation du debounce sur la recherche :**
+
+<img src="./imgs/debounce.png" alt="Rechercher des produit avec debounce" />
+
+Pour implémenter le debounce sur la recherche qui consiste à retarder l'exécution d'une fonction ou l'appelle à une API par quelques ms, on a procéder comme ce qui suit : 
+1. Ajouter un autre état `debounce` sur laquelle on va se baser pour éffectuer la recherch, au lieu d'utiliser `serachTerm`
+2. Implémenter un `useEffect` qui mettera à jour l'état `debounce` à chaque fois que l'état `searchTerm` est modifiée, cette mise à jour sera effectuée de façon retardée par 500ms en utiliser la fonction `setTimeout()`, et qui retournera une fonction `cleanup()` qui nettoie ce `setTimeout` pour chaque nouvelle mise à jour de `searchTerm`
+3. Injecter `debounce` au lieu de `searchTerm` comme propriété du composant `ProductList`
+
 ### Exercice 2 : Context et Internationalisation
 #### Objectif : Gérer les préférences de langue
 
