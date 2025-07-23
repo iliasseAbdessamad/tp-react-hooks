@@ -120,11 +120,15 @@ b - L'utilisateur selectionne la langue anglaise :
 - [ ] 3.2 Créer le hook useLocalStorage
 - [ ] 3.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 3 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+#### Réponses : 
+
+**1. useDebounce() :** permet d'avoir un comportement réutilisable qui retarde les appels aux fonctions et aux API
+
+<img src="./imgs/useDebounce.png" alt="useDebounce hook" />
+
+**2. useLocalStorage() :** de d'avoir un comporement réutilisable qui permet de stocker et lire la langue de préférence depuis `LocaleStorage` ce qui permet de maintenir cette valeur même si l'utilisateur actualise la page web.
+
+<img src="./imgs/useDebounce.png" alt="useDebounce hook" />
 
 ### Exercice 4 : Gestion Asynchrone et Pagination
 #### Objectif : Gérer le chargement et la pagination
