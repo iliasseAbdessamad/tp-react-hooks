@@ -51,11 +51,14 @@ Pour chaque exercice :
 - [ ] 1.2 Implémenter le debounce sur la recherche
 - [ ] 1.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 1 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+#### Réponses :
+
+**1 - Modification du composant ProductSearch pour effectuer la recherche :**
+
+<img src="./imgs/search.png" alt="Rechercher des produit" />
+
+Pour implémenter la recherche, j'ai utilisé la technique de "props drilling", cette solution consiste à faire remonter l'état dans le composant parent, puis de la faire passer comme propriété aux différents composants enfants qui ont besoin de cette dernière. 
+Dans notre cas la technique de "props drilling" est considérée comme la meilleur solution puisque les composants enfants qui ont besoin de cet état sont des enfants directs du composant parent qui maintient cet état.
 
 ### Exercice 2 : Context et Internationalisation
 #### Objectif : Gérer les préférences de langue

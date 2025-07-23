@@ -13,10 +13,11 @@ const useProductSearch = () => {
     const fetchProducts = async () => {
       try {
         // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
-        const response = await fetch('https://api.daaif.net/products?delay=1000');
+        const response = await fetch('http://localhost:3001/products');
         if (!response.ok) throw new Error('Erreur réseau');
         const data = await response.json();
-        setProducts(data.products);
+
+        setProducts(data);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -30,9 +31,9 @@ const useProductSearch = () => {
   // TODO: Exercice 4.1 - Ajouter la fonction de rechargement
   // TODO: Exercice 4.2 - Ajouter les fonctions pour la pagination
 
-  return { 
-    products, 
-    loading, 
+  return {
+    products,
+    loading,
     error,
     // TODO: Exercice 4.1 - Retourner la fonction de rechargement
     // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
