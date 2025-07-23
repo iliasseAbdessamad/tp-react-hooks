@@ -65,9 +65,18 @@ Dans notre cas la technique de "props drilling" est considérée comme la meille
 <img src="./imgs/debounce.png" alt="Rechercher des produit avec debounce" />
 
 Pour implémenter le debounce sur la recherche qui consiste à retarder l'exécution d'une fonction ou l'appelle à une API par quelques ms, on a procéder comme ce qui suit : 
-1. Ajouter un autre état `debounce` sur laquelle on va se baser pour éffectuer la recherch, au lieu d'utiliser `serachTerm`
-2. Implémenter un `useEffect` qui mettera à jour l'état `debounce` à chaque fois que l'état `searchTerm` est modifiée, cette mise à jour sera effectuée de façon retardée par 500ms en utiliser la fonction `setTimeout()`, et qui retournera une fonction `cleanup()` qui nettoie ce `setTimeout` pour chaque nouvelle mise à jour de `searchTerm`
+1. Ajouter un autre état `debounce` sur lequel on va se baser pour éffectuer la recherche
+2. Implémenter un `useEffect` qui mettera à jour l'état `debounce` à chaque fois que l'état `searchTerm` est modifiée, cette mise à jour sera effectuée de façon retardée par 500ms en utilisant la fonction `setTimeout()`, et qui retournera une fonction `cleanup()` qui nettoiera ce `setTimeout` pour chaque nouvelle mise à jour de `searchTerm`
 3. Injecter `debounce` au lieu de `searchTerm` comme propriété du composant `ProductList`
+
+**Problèmes rencontrés et solutions :** 
+
+<ul>
+<li><b>Problème :</b> L'exécution de la recherche cause plusieurs invokation de la méthode filter()</li>
+<li><b>Solution :</b> Utilisation du debounce sur la recherche via un `setTimeout` et `clearTimeout` pour retarder les appels à la fonction `filter()`</li>
+</ul>
+
+
 
 ### Exercice 2 : Context et Internationalisation
 #### Objectif : Gérer les préférences de langue
@@ -76,11 +85,33 @@ Pour implémenter le debounce sur la recherche qui consiste à retarder l'exécu
 - [ ] 2.2 Ajouter le sélecteur de langue
 - [ ] 2.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 2 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+#### Réponse :
+
+1 - Création du context LanguageContext qui se compose de l'état `language` qui stock la langue actuelle et `setLanguage` qui modifie cet état, et qui retourne un `LanguageContext Provider` qui fournit `language` et `setLanguage`: 
+
+<img src="./imgs/languageContext.png" alt="language context" />
+
+2 - Ajout du selecteur du langue (le composant `LanguageSelector`) qui va utiliser `setLanguage` fourni par le `LanguageContextProvider` pour mettre à jour l'état `language` à chaque fois où l'utilisateur séléctionne une nouvelle option (français ou anglais) 
+
+<img src="./imgs/languageSelector.png" alt="language selector" />
+
+3 - Enfin pour que toute l'application pourra être afféctée par la langue choisi, j'ai entourer le composant `App.js` par le `LanguageContext.Provider`
+
+<img src="./imgs/provider.png" alt="language context provider" />
+
+**Demonstration :**
+
+a - L'utilisateur selectionne la langue française :
+
+<img src="./imgs/fr.png" alt="language française" />
+
+b - L'utilisateur selectionne la langue anglaise :
+
+<img src="./imgs/an.png" alt="language anglaise" />
+
+<img src="./imgs/an2.png" alt="language anglaise" />
+
+
 
 ### Exercice 3 : Hooks Personnalisés
 #### Objectif : Créer des hooks réutilisables

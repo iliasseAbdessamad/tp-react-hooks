@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../App';
 import useProductSearch from '../hooks/useProductSearch';
+import { LanguageContext } from '../contexts/LanguageContext';
 
 const ProductList = ({ searchTerm }) => {
   const { isDarkTheme } = useContext(ThemeContext);
@@ -13,6 +14,13 @@ const ProductList = ({ searchTerm }) => {
     // TODO: Exercice 4.1 - Récupérer la fonction de rechargement
     // TODO: Exercice 4.2 - Récupérer les fonctions et états de pagination
   } = useProductSearch();
+
+  const labelText = {
+    fr: "Prix: ",
+    en: "Price: "
+  };
+
+  const { language } = useContext(LanguageContext);
 
   const filtredProducts = products.filter((p => {
     return p.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -51,7 +59,7 @@ const ProductList = ({ searchTerm }) => {
                 <h5 className="card-title">{product.title}</h5>
                 <p className="card-text">{product.description}</p>
                 <p className="card-text">
-                  <strong>Prix: </strong>
+                  <strong>{labelText[language]} </strong>
                   {product.price}€
                 </p>
               </div>
