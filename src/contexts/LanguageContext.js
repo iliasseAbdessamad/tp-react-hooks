@@ -1,9 +1,10 @@
 import React, { createContext, useState } from "react";
+import { useLocalStorage } from "../hooks/useProductSearch";
 
 export const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('fr'); 
+  const [language, setLanguage] = useLocalStorage("language","en");  
 
 
   const changeLanguage = (newLanguage) => {

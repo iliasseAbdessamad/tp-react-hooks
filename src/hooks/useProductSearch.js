@@ -16,6 +16,28 @@ export const useDebounce = (value, delay) => {
 };
 
 // TODO: Exercice 3.2 - Créer le hook useLocalStorage
+export const useLocalStorage = (key,initialValue) => {
+  const[storedVal, setStoredVal] = useState(()=>{
+    try{
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    }catch(error){
+
+      console.warn('Error reading from local storage',error);
+      return initialValue;
+    }
+  });
+  const setValue = (value) => {
+    try{
+      const valueToStore = value instanceof Function ? value(storedVal) : value;
+      setStoredVal(valueToStore);
+      window.localStorage.setItem(key,JSON.stringify(valueToStore));
+    }catch(error){
+      console.warn('Error writing to local storage',error);
+    }
+  };
+  return [storedVal,setValue];
+};
 
 const useProductSearch = () => {
   const [products, setProducts] = useState([]);
