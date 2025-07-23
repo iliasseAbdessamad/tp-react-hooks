@@ -126,7 +126,7 @@ b - L'utilisateur selectionne la langue anglaise :
 
 <img src="./imgs/useDebounce.png" alt="useDebounce hook" />
 
-**2. useLocalStorage() :** de d'avoir un comporement réutilisable qui permet de stocker et lire la langue de préférence depuis `LocaleStorage` ce qui permet de maintenir cette valeur même si l'utilisateur actualise la page web.
+**2. useLocalStorage() :** permet d'avoir un comporement réutilisable sui sert à stocker et lire la langue de préférence depuis `LocaleStorage` ce qui permet de maintenir cette valeur même si l'utilisateur actualise la page web.
 
 <img src="./imgs/useDebounce.png" alt="useDebounce hook" />
 
