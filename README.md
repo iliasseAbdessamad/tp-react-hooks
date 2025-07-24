@@ -129,7 +129,24 @@ b - L'utilisateur selectionne la langue anglaise :
 **2. useLocalStorage() :** permet d'avoir un comportement réutilisable sui sert à stocker et lire la langue de préférence depuis `LocaleStorage` ce qui permet de maintenir cette valeur même si l'utilisateur actualise la page web.
 
 <img src="./imgs/useDebounce.png" alt="useDebounce hook" />
- 
+
+#### Démonstration : 
+
+**useDebouce() Hook :**
+
+1 - recherche via le hook useDebouce() (juste après la saisie du critère de recherche): 
+
+<img src="./imgs/useDebounce_search_before.png" alt="useDebounce hook" />
+
+2 - recherche via le hook useDebouce() (juste après le découlement de 1000 ms après la saisi): 
+
+<img src="./imgs/useDebounce_search_after.png" alt="useDebounce hook" />
+
+**useLocalStorage() Hook :**
+
+1 - utilisation de useLocalStorage() pour stocker et consommer la langue de préference de l'utilisateur :
+
+<img src="./imgs/useLocalStorage_1.png" alt="useLocalStorage hook" />
 
 ### Exercice 4 : Gestion Asynchrone et Pagination
 #### Objectif : Gérer le chargement et la pagination
@@ -138,11 +155,31 @@ b - L'utilisateur selectionne la langue anglaise :
 - [ ] 4.2 Implémenter la pagination
 - [ ] 4.3 Documenter votre solution ici
 
-_Votre réponse pour l'exercice 4 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+#### Réponses : 
+
+**1. fonctionnalité de rechargement :**
+
+1 - l'utilisateur utilise la langue anglaise comme langue de préférence 
+
+<img src="./imgs/reload.png" alt="Bouton Reload" />
+
+2 - l'utilisateur utilise la langue française comme langue de préférence 
+
+<img src="./imgs/recharger.png" alt="Bouton Recharger" />
+
+3 - Rechargement lors du clique sur le bouton "Recharger"
+
+<img src="./imgs/spinner.png" alt="Rechargement" />
+
+4 - Explication de la démarche de l'implémentation
+
+- Deplacement du fetchProducts en dehors du hook useEffect afin qu'il puisse ètre réutilisé.
+- setLoading true : cela garantit que le spinner apparaît lors de la récupération des données, même pendant un rechargement.
+- une fois la récupération est terminée ou échouée, setloading to false, garantissant un retour visuel précis.
+- en appelant fetchProducts, il actualise efficacement la liste des produits tout en affichant le spinner.
+- La fonction reload appelle désormais directement fetchProducts, garantissant qu'elle fonctionne sans dupliquer la logique.
+- appel useEffect : utilise toujours fetchProducts pour la récupération initiale des données lorsque le composant est monté.
+- Ajout button recharger au ProductList component.
 
 ## Rendu
 

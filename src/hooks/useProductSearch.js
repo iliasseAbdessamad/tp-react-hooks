@@ -3,40 +3,40 @@ import { useState, useEffect } from 'react';
 // TODO: Exercice 3.1 - Créer le hook useDebounce
 export const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
-  useEffect(()=>{
-    const handler = setTimeout(()=>{
+  useEffect(() => {
+    const handler = setTimeout(() => {
       setDebouncedValue(value)
-    },delay);
+    }, delay);
 
-    return()=>{
+    return () => {
       clearTimeout(handler);
     };
-  },[value,delay]);
+  }, [value, delay]);
   return debouncedValue;
 };
 
 // TODO: Exercice 3.2 - Créer le hook useLocalStorage
-export const useLocalStorage = (key,initialValue) => {
-  const[storedVal, setStoredVal] = useState(()=>{
-    try{
+export const useLocalStorage = (key, initialValue) => {
+  const [storedVal, setStoredVal] = useState(() => {
+    try {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
-    }catch(error){
+    } catch (error) {
 
-      console.warn('Error reading from local storage',error);
+      console.warn('Error reading from local storage', error);
       return initialValue;
     }
   });
   const setValue = (value) => {
-    try{
+    try {
       const valueToStore = value instanceof Function ? value(storedVal) : value;
       setStoredVal(valueToStore);
-      window.localStorage.setItem(key,JSON.stringify(valueToStore));
-    }catch(error){
-      console.warn('Error writing to local storage',error);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.warn('Error writing to local storage', error);
     }
   };
-  return [storedVal,setValue];
+  return [storedVal, setValue];
 };
 
 const useProductSearch = () => {
@@ -45,27 +45,34 @@ const useProductSearch = () => {
   const [error, setError] = useState(null);
   // TODO: Exercice 4.2 - Ajouter l'état pour la pagination
 
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
+      const response = await fetch('http://localhost:3001/products');
+      if (!response.ok) throw new Error('Erreur réseau');
+      const data = await response.json();
+      setProducts(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
-        const response = await fetch('http://localhost:3001/products');
-        if (!response.ok) throw new Error('Erreur réseau');
-        const data = await response.json();
-
-        setProducts(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-
     fetchProducts();
-  }, []); // TODO: Exercice 4.2 - Ajouter les dépendances pour la pagination
+  }, []);
+
+
+
 
   // TODO: Exercice 4.1 - Ajouter la fonction de rechargement
-  
+  const reload = () => {
+    fetchProducts();
+  };
+
   // TODO: Exercice 4.2 - Ajouter les fonctions pour la pagination
 
   return {
@@ -73,6 +80,7 @@ const useProductSearch = () => {
     loading,
     error,
     // TODO: Exercice 4.1 - Retourner la fonction de rechargement
+    reload,
     // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
   };
 };
