@@ -159,17 +159,26 @@ b - L'utilisateur selectionne la langue anglaise :
 
 **1. fonctionnalité de rechargement :**
 
+
 1 - l'utilisateur utilise la langue anglaise comme langue de préférence 
 
 <img src="./imgs/reload.png" alt="Bouton Reload" />
+
 
 2 - l'utilisateur utilise la langue française comme langue de préférence 
 
 <img src="./imgs/recharger.png" alt="Bouton Recharger" />
 
+
 3 - Rechargement lors du clique sur le bouton "Recharger"
 
 <img src="./imgs/spinner.png" alt="Rechargement" />
+
+
+4 - Après rechargement
+
+<img src="./imgs/spinner_after.png" alt="Rechargement" />
+
 
 4 - Explication de la démarche de l'implémentation
 
