@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // TODO: Exercice 3.1 - Créer le hook useDebounce
 export const useDebounce = (value, delay) => {
@@ -44,27 +44,36 @@ const useProductSearch = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // TODO: Exercice 4.2 - Ajouter l'état pour la pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 30;
 
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
+
     try {
-      // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
-      const response = await fetch('http://localhost:3001/products');
+
+      //total pages 
+      const res = await fetch('http://localhost:3001/total');
+      const totalProducts = await res.json()
+      setTotalPages(Math.ceil(totalProducts / limit))
+
+      const response = await fetch('http://localhost:3001/products?_page=' + currentPage);
       if (!response.ok) throw new Error('Erreur réseau');
       const data = await response.json();
-      setProducts(data);
+      setProducts(data.data);
+
+
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  }
+  }, [currentPage, limit])
 
   useEffect(() => {
     fetchProducts();
-  }, []);
-
+  }, [fetchProducts]);
 
 
 
@@ -75,6 +84,18 @@ const useProductSearch = () => {
 
   // TODO: Exercice 4.2 - Ajouter les fonctions pour la pagination
 
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
   return {
     products,
     loading,
@@ -82,6 +103,10 @@ const useProductSearch = () => {
     // TODO: Exercice 4.1 - Retourner la fonction de rechargement
     reload,
     // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
+    currentPage,
+    totalPages,
+    nextPage,
+    previousPage,
   };
 };
 

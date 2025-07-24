@@ -157,30 +157,30 @@ b - L'utilisateur selectionne la langue anglaise :
 
 #### Réponses : 
 
-**1. fonctionnalité de rechargement :**
+**1. Fonctionnalité de rechargement :**
 
 
 1 - l'utilisateur utilise la langue anglaise comme langue de préférence 
 
 <img src="./imgs/reload.png" alt="Bouton Reload" />
-
+<br/>
 
 2 - l'utilisateur utilise la langue française comme langue de préférence 
 
 <img src="./imgs/recharger.png" alt="Bouton Recharger" />
-
+<br/>
 
 3 - Rechargement lors du clique sur le bouton "Recharger"
 
 <img src="./imgs/spinner.png" alt="Rechargement" />
-
+<br/>
 
 4 - Après rechargement
 
 <img src="./imgs/spinner_after.png" alt="Rechargement" />
+<br/>
 
-
-4 - Explication de la démarche de l'implémentation
+5 - Explication de la démarche de l'implémentation
 
 - Deplacement du fetchProducts en dehors du hook useEffect afin qu'il puisse ètre réutilisé.
 - setLoading true : cela garantit que le spinner apparaît lors de la récupération des données, même pendant un rechargement.
@@ -189,6 +189,22 @@ b - L'utilisateur selectionne la langue anglaise :
 - La fonction reload appelle désormais directement fetchProducts, garantissant qu'elle fonctionne sans dupliquer la logique.
 - appel useEffect : utilise toujours fetchProducts pour la récupération initiale des données lorsque le composant est monté.
 - Ajout button recharger au ProductList component.
+
+<br/>
+
+**2 - Fonctionnalité de la pagination :**
+
+1 - Page 1 :
+
+<img src=".imgs/page.png" alt="page courante"/>
+
+1 - Page suivante :
+
+<img src=".imgs/page_suivante.png" alt="page suivante"/>
+
+3 - Page précedente : 
+
+<img src=".imgs/page_precedente.png" alt="page précedente"/>
 
 ## Rendu
 
