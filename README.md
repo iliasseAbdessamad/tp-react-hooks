@@ -194,19 +194,20 @@ b - L'utilisateur selectionne la langue anglaise :
 
 **2 - Fonctionnalité de la pagination :**
 
-1 - Page 1 :
+1 - Page numéro 1 :
 
-<img src=".imgs/page.png" alt="page courante"/>
+<img src="./imgs/page.png" alt="page courante"/>
 
 1 - Page suivante :
 
-<img src=".imgs/page_suivante.png" alt="page suivante"/>
+<img src="./imgs/page_suivante.png" alt="page suivante"/>
 
 3 - Page précedente : 
 
-<img src=".imgs/page_precedente.png" alt="page précedente"/>
+<img src="./imgs/page_precedente.png" alt="page précedente"/>
 
-## Rendu
+
+#### Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.
 - Les push doivent se faire au fûr et à mesure que vous avancez dans votre projet.
