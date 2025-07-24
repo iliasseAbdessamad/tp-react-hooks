@@ -64,16 +64,16 @@ Dans notre cas la technique de "props drilling" est considérée comme la meille
 
 <img src="./imgs/debounce.png" alt="Rechercher des produit avec debounce" />
 
-Pour implémenter le debounce sur la recherche qui consiste à retarder l'exécution d'une fonction ou l'appelle à une API par quelques ms, on a procéder comme ce qui suit : 
+Pour implémenter le debounce sur la recherche qui consiste à retarder l'exécution d'une fonction ou l'appel à une API par quelques ms, j'ai procédé de la façon suivante : 
 1. Ajouter un autre état `debounce` sur lequel on va se baser pour éffectuer la recherche
-2. Implémenter un `useEffect` qui mettera à jour l'état `debounce` à chaque fois que l'état `searchTerm` est modifiée, cette mise à jour sera effectuée de façon retardée par 500ms en utilisant la fonction `setTimeout()`, et qui retournera une fonction `cleanup()` qui nettoiera ce `setTimeout` pour chaque nouvelle mise à jour de `searchTerm`
+2. Implémenter un `useEffect` qui mettera à jour l'état `debounce` à chaque fois que l'état `searchTerm` est modifiée, cette mise à jour sera effectuée de façon retardée par 500ms en utilisant la fonction `setTimeout()`, et qui retournera une fonction `cleanup()` pour effacer le précedent `setTimeout` pour chaque nouvelle mise à jour de `searchTerm`
 3. Injecter `debounce` au lieu de `searchTerm` comme propriété du composant `ProductList`
 
 **Problèmes rencontrés et solutions :** 
 
 <ul>
-<li><b>Problème :</b> L'exécution de la recherche cause plusieurs invokation de la méthode filter()</li>
-<li><b>Solution :</b> Utilisation du debounce sur la recherche via un `setTimeout` et `clearTimeout` pour retarder les appels à la fonction `filter()`</li>
+<li><b>Problème :</b> L'exécution de la recherche cause plusieurs invocations de la méthode filter()</li>
+<li><b>Solution :</b> Utilisation du debounce sur la recherche via un setTimeout et clearTimeout` pour retarder les appels à la fonction filter()</li>
 </ul>
 
 
@@ -126,9 +126,10 @@ b - L'utilisateur selectionne la langue anglaise :
 
 <img src="./imgs/useDebounce.png" alt="useDebounce hook" />
 
-**2. useLocalStorage() :** permet d'avoir un comporement réutilisable sui sert à stocker et lire la langue de préférence depuis `LocaleStorage` ce qui permet de maintenir cette valeur même si l'utilisateur actualise la page web.
+**2. useLocalStorage() :** permet d'avoir un comportement réutilisable sui sert à stocker et lire la langue de préférence depuis `LocaleStorage` ce qui permet de maintenir cette valeur même si l'utilisateur actualise la page web.
 
 <img src="./imgs/useDebounce.png" alt="useDebounce hook" />
+ 
 
 ### Exercice 4 : Gestion Asynchrone et Pagination
 #### Objectif : Gérer le chargement et la pagination
